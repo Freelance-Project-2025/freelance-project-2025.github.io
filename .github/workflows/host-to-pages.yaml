@@ -38,6 +38,14 @@ jobs:
                 basePath: '/${REPO_NAME}',
                 assetPrefix: '/${REPO_NAME}/',
                 trailingSlash: true,
+                async rewrites() {
+                    return [
+                    {
+                        source: "/:path*",
+                        destination: `/${REPO_NAME}/:path*`,
+                    },
+                    ];
+                },
               \`);
           }
 
