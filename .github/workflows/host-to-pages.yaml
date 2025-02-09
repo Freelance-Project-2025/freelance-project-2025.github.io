@@ -23,13 +23,26 @@ jobs:
           jq --arg homepage "https://$GITHUB_ACTOR.github.io/$REPO_NAME/" '.homepage = $homepage' package.json > temp.json && mv temp.json package.json
           cat package.json  # Debugging step to verify the change
 
-      - name: Update next.config.js with basePath and assetPrefix
+      - name: Update next.config.ts with basePath and assetPrefix
         run: |
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
-          sed -i '/module.exports = {/i\
-          \ \ basePath: "/'"$REPO_NAME"'",\
-          \ \ assetPrefix: "/'"$REPO_NAME"'/",' next.config.ts
-          cat next.config.ts  # Debugging step
+
+          node -e "
+          const fs = require('fs');
+          const path = 'next.config.ts';
+          let config = fs.readFileSync(path, 'utf8');
+
+          if (!config.includes('basePath')) {
+              config = config.replace(/const nextConfig: NextConfig = {/, \`
+              const nextConfig: NextConfig = {
+                basePath: '/${REPO_NAME}',
+                assetPrefix: '/${REPO_NAME}/',
+              \`);
+          }
+
+          fs.writeFileSync(path, config);
+          console.log('Updated next.config.ts:\\n', config);
+          "
 
       - name: Install dependencies and build
         run: |
