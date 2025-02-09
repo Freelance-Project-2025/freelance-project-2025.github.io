@@ -35,8 +35,8 @@ jobs:
           if (!config.includes('basePath')) {
               config = config.replace(/const nextConfig: NextConfig = {/, \`
               const nextConfig: NextConfig = {
-                basePath: 'frontend',
-                assetPrefix: 'frontend/',
+                basePath: '/frontend',
+                assetPrefix: '/frontend/',
                 trailingSlash: true,
                 async rewrites() {
                     return [
