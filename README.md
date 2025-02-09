@@ -3,7 +3,7 @@ This repository contains the code to athena landing site
 
 ## Links
 - [main host](#)
-- [staging host]()
+- [staging host](https://freelance-project-2025.github.io/)
 - [figma file]()
 - [notion file]()
 
