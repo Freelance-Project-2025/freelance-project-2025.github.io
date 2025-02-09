@@ -28,8 +28,8 @@ jobs:
           REPO_NAME=$(basename $GITHUB_REPOSITORY)
           sed -i '/module.exports = {/i\
           \ \ basePath: "/'"$REPO_NAME"'",\
-          \ \ assetPrefix: "/'"$REPO_NAME"'/",' next.config.js
-          cat next.config.js  # Debugging step
+          \ \ assetPrefix: "/'"$REPO_NAME"'/",' next.config.ts
+          cat next.config.ts  # Debugging step
 
       - name: Install dependencies and build
         run: |
