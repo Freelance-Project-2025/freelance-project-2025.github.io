@@ -17,6 +17,12 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Update package.json homepage field
+        run: |
+          REPO_NAME=$(basename $GITHUB_REPOSITORY)
+          jq --arg homepage "https://$GITHUB_ACTOR.github.io/$REPO_NAME/" '.homepage = $homepage' package.json > temp.json && mv temp.json package.json
+          cat package.json  # Debugging step to verify the change
+
       - name: Install dependencies and build
         run: |
           npm install --legacy-peer-deps
