@@ -42,7 +42,7 @@ jobs:
                     return [
                     {
                         source: '/:path*',
-                        destination: `/frontend/:path*`,
+                        destination: '/frontend/:path*',
                     },
                     ];
                 },
