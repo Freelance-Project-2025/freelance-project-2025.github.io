@@ -41,7 +41,7 @@ jobs:
                 async rewrites() {
                     return [
                     {
-                        source: "/:path*",
+                        source: '/:path*',
                         destination: `/frontend/:path*`,
                     },
                     ];
